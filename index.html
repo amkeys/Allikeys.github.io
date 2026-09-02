@@ -103,9 +103,14 @@
     border-radius:2px;
   }
   .box h2{font-size:1.2rem;margin-bottom:0.5em;}
-  .box .field{margin-bottom:10px;font-size:0.95rem;}
-  .box .field .label{color:var(--gold);display:block;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:2px;}
+  .field{margin-bottom:10px;font-size:0.95rem;}
+  .field .label{color:var(--gold);display:block;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:2px;}
   .placeholder{color:#8a7f66;font-style:italic;}
+
+  .course-space{margin-bottom:14px;}
+  .course-space .label{color:var(--gold);display:block;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;}
+  .placeholder-list{margin:0;padding-left:1.2em;}
+  .placeholder-list li{margin-bottom:2px;}
 
   form{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
   form label{font-size:0.82rem;color:var(--navy);font-weight:600;}
@@ -144,33 +149,28 @@
   .bio h3{color:#5a5548;font-size:0.95rem;font-family:'Inter',sans-serif;font-weight:600;margin-bottom:0.6em;}
   .bio p{margin:0 0 1em 0;}
 
-  /* SUBJECT TABS: HS/College pill toggle */
+  /* SUBJECT SECTIONS: HS + College stacked */
   .subject-head{margin-bottom:8px;}
   .subject-head p{max-width:60ch;color:#5a5548;margin-top:4px;}
-  .level-toggle{
-    display:inline-flex;
-    background:var(--tan);
-    border-radius:20px;
-    padding:4px;
-    margin:24px 0 28px 0;
-  }
-  .level-btn{
-    background:none;border:none;
-    padding:8px 20px;
-    border-radius:16px;
-    font-family:'Inter',sans-serif;
-    font-size:0.9rem;
-    color:var(--navy);
-    cursor:pointer;
-  }
-  .level-btn.active{background:var(--navy);color:#fff;font-weight:600;}
 
-  .level-panel{display:none;}
-  .level-panel.active{display:block;}
+  .level-block{margin-top:40px;}
+  .level-block:first-of-type{margin-top:28px;}
+  .level-heading{
+    font-family:'Inter',sans-serif;
+    font-size:0.85rem;
+    font-weight:600;
+    color:#fff;
+    background:var(--navy);
+    display:inline-block;
+    padding:6px 16px;
+    border-radius:3px;
+    margin-bottom:18px;
+  }
   .course-list{display:flex;flex-direction:column;gap:18px;}
   .course{border-top:1px solid var(--tan-line);padding-top:16px;}
   .course h3{font-size:1.05rem;margin-bottom:4px;}
   .course p{margin:0;color:#4a4638;font-size:0.94rem;max-width:62ch;}
+  .course p.placeholder{color:#8a7f66;}
 
   footer{
     text-align:center;padding:26px 0;
@@ -223,24 +223,25 @@
         <h2>Rates &amp; Availability</h2>
         <div class="field">
           <span class="label">Hourly rate</span>
-          <span class="placeholder">[add your rate here]</span>
+          <span class="placeholder">TODO: add your rate</span>
         </div>
         <div class="field">
           <span class="label">Session length</span>
-          <span class="placeholder">[e.g. 60 or 90 minutes]</span>
+          <span class="placeholder">TODO: add e.g. 60 or 90 minutes</span>
         </div>
         <div class="field">
           <span class="label">Availability</span>
-          <span class="placeholder">[add your general days/times]</span>
+          <span class="placeholder">TODO: add your general days/times</span>
         </div>
         <div class="field">
           <span class="label">Location</span>
-          <span class="placeholder">[general area you tutor in-person]</span>
+          <span class="placeholder">TODO: add general area you tutor in-person</span>
         </div>
       </div>
 
       <div class="box">
         <h2>Get in Touch</h2>
+        <!-- TODO: replace with your real Formspree form URL from formspree.io -->
         <form action="https://formspree.io/f/yourFormID" method="POST">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" required>
@@ -265,8 +266,25 @@
 
     <div class="bio">
       <h3>Experience &amp; Background</h3>
-      <p class="placeholder">[Add the fuller story here: your path into chemistry and CS, your PhD work, and details on your TA roles at Stanford and MIT — course names, what you were responsible for, how many students, etc. This is the place for the longer version; the top of the page already covers the short summary.]</p>
-      <p class="placeholder">[Add more on your tutoring history specifically — how long you've tutored, what kinds of students/levels, any notable outcomes.]</p>
+
+      <div class="course-space">
+        <span class="label">4 years tutoring</span>
+        <ul class="placeholder-list">
+          <li class="placeholder">TODO: course name</li>
+          <li class="placeholder">TODO: course name</li>
+          <li class="placeholder">TODO: course name</li>
+        </ul>
+      </div>
+      <div class="course-space" style="margin-bottom:20px;">
+        <span class="label">3 semesters as TA</span>
+        <ul class="placeholder-list">
+          <li class="placeholder">TODO: course name</li>
+          <li class="placeholder">TODO: course name</li>
+        </ul>
+      </div>
+
+      <p class="placeholder">TODO: add the fuller story here — your path into chemistry and CS, your PhD work, and details on your TA roles at Stanford and MIT (what you were responsible for, how many students, etc). This is the place for the longer version; the top of the page already covers the short summary.</p>
+      <p class="placeholder">TODO: add more on your tutoring history specifically — what kinds of students/levels, any notable outcomes.</p>
       <p>My approach centers on personalized tutoring that meets each student where they are, discussion-based sessions that keep students actively engaged rather than passively listening, and a consistent focus on the underlying mechanisms and logic of a subject — not just the steps to an answer.</p>
     </div>
 
@@ -281,29 +299,22 @@
       <p>Support across general, organic, and biochemistry, from first exposure to advanced coursework.</p>
     </div>
 
-    <div class="level-toggle" role="tablist">
-      <button class="level-btn active" data-level="chem-hs">High School</button>
-      <button class="level-btn" data-level="chem-college">College</button>
-    </div>
-
-    <div class="level-panel active" id="chem-hs">
+    <div class="level-block">
+      <h2 class="level-heading">High School</h2>
       <div class="course-list">
         <div class="course">
           <h3>Intro &amp; Honors Chemistry</h3>
-          <p class="placeholder">[Add detail: topics covered, e.g. stoichiometry, bonding, thermodynamics basics.]</p>
+          <p class="placeholder">TODO: add detail — topics covered, e.g. stoichiometry, bonding, thermodynamics basics.</p>
         </div>
         <div class="course">
           <h3>AP Chemistry</h3>
-          <p class="placeholder">[Add detail: exam prep focus, lab report support, pacing.]</p>
-        </div>
-        <div class="course">
-          <h3>Exam &amp; Test Prep</h3>
-          <p class="placeholder">[Add detail: which exams, typical session structure.]</p>
+          <p class="placeholder">TODO: add detail — exam prep focus, lab report support, pacing.</p>
         </div>
       </div>
     </div>
 
-    <div class="level-panel" id="chem-college">
+    <div class="level-block">
+      <h2 class="level-heading">College</h2>
       <div class="course-list">
         <div class="course">
           <h3>General Chemistry</h3>
@@ -311,17 +322,22 @@
         </div>
         <div class="course">
           <h3>Organic Chemistry</h3>
-          <p class="placeholder">[Add detail: mechanism-focused approach, common trouble spots you help with.]</p>
+          <p class="placeholder">TODO: add detail — mechanism-focused approach, common trouble spots you help with.</p>
         </div>
         <div class="course">
           <h3>Biochemistry</h3>
-          <p class="placeholder">[Add detail: topics, how sessions are structured.]</p>
+          <p class="placeholder">TODO: add detail — topics, how sessions are structured.</p>
         </div>
         <div class="course">
-          <h3>Conceptual Mastery &amp; Exam Prep</h3>
-          <p class="placeholder">[Add detail.]</p>
+          <h3>Graduate School Admissions</h3>
+          <p class="placeholder">TODO: add detail — what this covers, e.g. personal statements, program selection, interview prep.</p>
         </div>
       </div>
+    </div>
+
+    <div class="level-block">
+      <h2 class="level-heading">Other</h2>
+      <p>Have something you'd like help on, feel free to reach out with a description of the course or problem.</p>
     </div>
   </div>
 </section>
@@ -331,46 +347,44 @@
   <div class="wrap">
     <div class="subject-head">
       <h1>Computer Science Tutoring</h1>
-      <p>Programming, systems, and algorithms, taught with an emphasis on building real, working understanding.</p>
+      <p>Programming and computational science, taught with an emphasis on building real, working understanding.</p>
     </div>
 
-    <div class="level-toggle" role="tablist">
-      <button class="level-btn active" data-level="cs-hs">High School</button>
-      <button class="level-btn" data-level="cs-college">College</button>
-    </div>
-
-    <div class="level-panel active" id="cs-hs">
+    <div class="level-block">
+      <h2 class="level-heading">High School</h2>
       <div class="course-list">
         <div class="course">
           <h3>Intro Programming</h3>
-          <p class="placeholder">[Add detail: languages taught, typical starting point for beginners.]</p>
+          <p class="placeholder">TODO: add detail — languages taught, typical starting point for beginners.</p>
         </div>
         <div class="course">
           <h3>AP Computer Science</h3>
-          <p class="placeholder">[Add detail: exam prep, project support.]</p>
+          <p class="placeholder">TODO: add detail — exam prep, project support.</p>
         </div>
       </div>
     </div>
 
-    <div class="level-panel" id="cs-college">
+    <div class="level-block">
+      <h2 class="level-heading">College</h2>
       <div class="course-list">
         <div class="course">
           <h3>Programming</h3>
-          <p class="placeholder">[Add detail: languages/frameworks you cover.]</p>
+          <p class="placeholder">TODO: add detail — languages/frameworks you cover.</p>
         </div>
         <div class="course">
-          <h3>Systems</h3>
-          <p class="placeholder">[Add detail.]</p>
+          <h3>Computational Biology</h3>
+          <p class="placeholder">TODO: add detail — topics, tools, typical coursework this supports.</p>
         </div>
         <div class="course">
-          <h3>Algorithms</h3>
-          <p class="placeholder">[Add detail: data structures, complexity, interview prep.]</p>
-        </div>
-        <div class="course">
-          <h3>Agentic Coding</h3>
-          <p class="placeholder">[Add detail: what this covers in your sessions.]</p>
+          <h3>Computational Chemistry</h3>
+          <p class="placeholder">TODO: add detail — topics, tools, typical coursework this supports.</p>
         </div>
       </div>
+    </div>
+
+    <div class="level-block">
+      <h2 class="level-heading">Other</h2>
+      <p>Have something you'd like help on, feel free to reach out with a description of the course or problem.</p>
     </div>
   </div>
 </section>
@@ -386,19 +400,23 @@
     <div class="course-list" style="margin-top:20px;">
       <div class="course">
         <h3>Independent Projects</h3>
-        <p class="placeholder">[Add detail: examples of past projects you've supported.]</p>
+        <p class="placeholder">TODO: add detail — examples of past projects you've supported.</p>
       </div>
       <div class="course">
         <h3>Research Support</h3>
-        <p class="placeholder">[Add detail.]</p>
+        <p class="placeholder">TODO: add detail.</p>
       </div>
       <div class="course">
         <h3>Building Real-World Skills</h3>
-        <p class="placeholder">[Add detail.]</p>
+        <p class="placeholder">TODO: add detail.</p>
       </div>
       <div class="course">
         <h3>Bringing Your Ideas to Life</h3>
-        <p class="placeholder">[Add detail.]</p>
+        <p class="placeholder">TODO: add detail.</p>
+      </div>
+      <div class="course">
+        <h3>Agentic Coding</h3>
+        <p class="placeholder">TODO: add detail — what this covers in your sessions.</p>
       </div>
     </div>
   </div>
@@ -421,16 +439,6 @@
     });
   });
 
-  const levelBtns = document.querySelectorAll('.level-btn');
-  levelBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const group = btn.closest('.panel');
-      group.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
-      group.querySelectorAll('.level-panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.level).classList.add('active');
-    });
-  });
 </script>
 
 </body>
