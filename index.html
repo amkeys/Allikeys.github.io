@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alli Keys — Chemistry &amp; CS Tutoring</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#132A46;
+    --paper:#F7F4EC;
+    --gold:#B08D3F;
+    --ink:#2F2C28;
+    --tan:#E4DCC8;
+    --tan-line: #D8CDAE;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3{
+    font-family:'Source Serif 4',serif;
+    color:var(--navy);
+    margin:0 0 0.4em 0;
+    font-weight:700;
+  }
+  a{color:var(--navy);}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--navy);
+    border-bottom:3px solid var(--gold);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-top:14px;padding-bottom:14px;
+    max-width:960px;
+  }
+  .brand{
+    color:var(--paper);
+    font-family:'Source Serif 4',serif;
+    font-weight:700;
+    font-size:1.15rem;
+    letter-spacing:0.02em;
+  }
+  .tabs{display:flex;gap:4px;flex-wrap:wrap;}
+  .tab-btn{
+    background:none;border:none;
+    color:#CBD4E0;
+    font-family:'Inter',sans-serif;
+    font-size:0.92rem;
+    padding:8px 14px;
+    cursor:pointer;
+    border-radius:3px;
+    transition:background 0.15s, color 0.15s;
+  }
+  .tab-btn:hover{color:#fff;background:rgba(255,255,255,0.08);}
+  .tab-btn.active{color:var(--navy);background:var(--gold);font-weight:600;}
+  .tab-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+  /* PANELS */
+  .panel{display:none;padding:48px 0 80px 0;}
+  .panel.active{display:block;}
+
+  /* ABOUT: HERO */
+  .hero{
+    display:flex;gap:40px;align-items:flex-start;
+    margin-bottom:44px;
+  }
+  .hero img{
+    width:230px;height:auto;border-radius:6px;
+    border:2px solid var(--tan-line);
+    flex-shrink:0;
+  }
+  .hero h1{font-size:2.1rem;line-height:1.15;margin-bottom:0.25em;}
+  .hero .role{color:var(--gold);font-family:'Source Serif 4',serif;font-size:1.15rem;margin-bottom:14px;}
+  .credentials{
+    display:flex;gap:18px;flex-wrap:wrap;
+    margin:16px 0;
+    font-size:0.92rem;
+    color:var(--navy);
+  }
+  .credentials span{border-bottom:1px solid var(--gold);padding-bottom:2px;}
+  .hero p.hook{max-width:46ch;margin-top:14px;}
+
+  /* PROMINENT PANELS: rates + contact */
+  .highlight-row{
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;
+    margin:40px 0;
+  }
+  .box{
+    background:var(--tan);
+    border-left:5px solid var(--gold);
+    padding:24px 26px;
+    border-radius:2px;
+  }
+  .box h2{font-size:1.2rem;margin-bottom:0.5em;}
+  .box .field{margin-bottom:10px;font-size:0.95rem;}
+  .box .field .label{color:var(--gold);display:block;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:2px;}
+  .placeholder{color:#8a7f66;font-style:italic;}
+
+  form{display:flex;flex-direction:column;gap:10px;margin-top:6px;}
+  form label{font-size:0.82rem;color:var(--navy);font-weight:600;}
+  form input, form select, form textarea{
+    font-family:'Inter',sans-serif;
+    padding:9px 10px;
+    border:1px solid var(--tan-line);
+    border-radius:3px;
+    font-size:0.95rem;
+    background:#fff;
+  }
+  form textarea{min-height:80px;resize:vertical;}
+  form button{
+    margin-top:6px;
+    background:var(--navy);
+    color:var(--paper);
+    border:none;
+    padding:11px 20px;
+    font-size:0.95rem;
+    font-weight:600;
+    border-radius:3px;
+    cursor:pointer;
+    width:fit-content;
+  }
+  form button:hover{background:#1c3a5e;}
+
+  /* BIO - quiet supporting text */
+  .bio{
+    max-width:58ch;
+    color:#5a5548;
+    font-size:0.94rem;
+    border-top:1px solid var(--tan-line);
+    padding-top:28px;
+    margin-top:8px;
+  }
+  .bio h3{color:#5a5548;font-size:0.95rem;font-family:'Inter',sans-serif;font-weight:600;margin-bottom:0.6em;}
+  .bio p{margin:0 0 1em 0;}
+
+  /* SUBJECT TABS: HS/College pill toggle */
+  .subject-head{margin-bottom:8px;}
+  .subject-head p{max-width:60ch;color:#5a5548;margin-top:4px;}
+  .level-toggle{
+    display:inline-flex;
+    background:var(--tan);
+    border-radius:20px;
+    padding:4px;
+    margin:24px 0 28px 0;
+  }
+  .level-btn{
+    background:none;border:none;
+    padding:8px 20px;
+    border-radius:16px;
+    font-family:'Inter',sans-serif;
+    font-size:0.9rem;
+    color:var(--navy);
+    cursor:pointer;
+  }
+  .level-btn.active{background:var(--navy);color:#fff;font-weight:600;}
+
+  .level-panel{display:none;}
+  .level-panel.active{display:block;}
+  .course-list{display:flex;flex-direction:column;gap:18px;}
+  .course{border-top:1px solid var(--tan-line);padding-top:16px;}
+  .course h3{font-size:1.05rem;margin-bottom:4px;}
+  .course p{margin:0;color:#4a4638;font-size:0.94rem;max-width:62ch;}
+
+  footer{
+    text-align:center;padding:26px 0;
+    color:#8a8370;font-size:0.82rem;
+    border-top:1px solid var(--tan-line);
+  }
+
+  @media (max-width:640px){
+    .hero{flex-direction:column;}
+    .hero img{width:100%;max-width:320px;}
+    .highlight-row{grid-template-columns:1fr;}
+    .tabs{gap:0;}
+    .tab-btn{padding:7px 10px;font-size:0.85rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Alli Keys Tutoring</div>
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" data-tab="about">About</button>
+      <button class="tab-btn" data-tab="chemistry">Chemistry</button>
+      <button class="tab-btn" data-tab="cs">Computer Science</button>
+      <button class="tab-btn" data-tab="projects">Personal Projects</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ABOUT -->
+<section class="panel active" id="about">
+  <div class="wrap">
+
+    <div class="hero">
+      <img src="photo.jpg" alt="Alli Keys">
+      <div>
+        <h1>Chemistry &amp; Computer Science Tutoring</h1>
+        <div class="role">PhD · Stanford · MIT</div>
+        <div class="credentials">
+          <span>4 years of college tutoring experience</span>
+          <span>TA for General Chemistry, Organic Chemistry &amp; Biochemistry</span>
+        </div>
+        <p class="hook">Personalized, in-person tutoring for high school and college students, built around discussion and genuine understanding rather than memorization.</p>
+      </div>
+    </div>
+
+    <div class="highlight-row">
+      <div class="box">
+        <h2>Rates &amp; Availability</h2>
+        <div class="field">
+          <span class="label">Hourly rate</span>
+          <span class="placeholder">[add your rate here]</span>
+        </div>
+        <div class="field">
+          <span class="label">Session length</span>
+          <span class="placeholder">[e.g. 60 or 90 minutes]</span>
+        </div>
+        <div class="field">
+          <span class="label">Availability</span>
+          <span class="placeholder">[add your general days/times]</span>
+        </div>
+        <div class="field">
+          <span class="label">Location</span>
+          <span class="placeholder">[general area you tutor in-person]</span>
+        </div>
+      </div>
+
+      <div class="box">
+        <h2>Get in Touch</h2>
+        <form action="https://formspree.io/f/yourFormID" method="POST">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="subject">Subject of interest</label>
+          <select id="subject" name="subject">
+            <option>Chemistry</option>
+            <option>Computer Science</option>
+            <option>Personal Project / Other</option>
+          </select>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="bio">
+      <h3>Experience &amp; Background</h3>
+      <p class="placeholder">[Add the fuller story here: your path into chemistry and CS, your PhD work, and details on your TA roles at Stanford and MIT — course names, what you were responsible for, how many students, etc. This is the place for the longer version; the top of the page already covers the short summary.]</p>
+      <p class="placeholder">[Add more on your tutoring history specifically — how long you've tutored, what kinds of students/levels, any notable outcomes.]</p>
+      <p>My approach centers on personalized tutoring that meets each student where they are, discussion-based sessions that keep students actively engaged rather than passively listening, and a consistent focus on the underlying mechanisms and logic of a subject — not just the steps to an answer.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CHEMISTRY -->
+<section class="panel" id="chemistry">
+  <div class="wrap">
+    <div class="subject-head">
+      <h1>Chemistry Tutoring</h1>
+      <p>Support across general, organic, and biochemistry, from first exposure to advanced coursework.</p>
+    </div>
+
+    <div class="level-toggle" role="tablist">
+      <button class="level-btn active" data-level="chem-hs">High School</button>
+      <button class="level-btn" data-level="chem-college">College</button>
+    </div>
+
+    <div class="level-panel active" id="chem-hs">
+      <div class="course-list">
+        <div class="course">
+          <h3>Intro &amp; Honors Chemistry</h3>
+          <p class="placeholder">[Add detail: topics covered, e.g. stoichiometry, bonding, thermodynamics basics.]</p>
+        </div>
+        <div class="course">
+          <h3>AP Chemistry</h3>
+          <p class="placeholder">[Add detail: exam prep focus, lab report support, pacing.]</p>
+        </div>
+        <div class="course">
+          <h3>Exam &amp; Test Prep</h3>
+          <p class="placeholder">[Add detail: which exams, typical session structure.]</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="level-panel" id="chem-college">
+      <div class="course-list">
+        <div class="course">
+          <h3>General Chemistry</h3>
+          <p>Foundational support for first-year college chemistry sequences, drawing on TA experience.</p>
+        </div>
+        <div class="course">
+          <h3>Organic Chemistry</h3>
+          <p class="placeholder">[Add detail: mechanism-focused approach, common trouble spots you help with.]</p>
+        </div>
+        <div class="course">
+          <h3>Biochemistry</h3>
+          <p class="placeholder">[Add detail: topics, how sessions are structured.]</p>
+        </div>
+        <div class="course">
+          <h3>Conceptual Mastery &amp; Exam Prep</h3>
+          <p class="placeholder">[Add detail.]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CS -->
+<section class="panel" id="cs">
+  <div class="wrap">
+    <div class="subject-head">
+      <h1>Computer Science Tutoring</h1>
+      <p>Programming, systems, and algorithms, taught with an emphasis on building real, working understanding.</p>
+    </div>
+
+    <div class="level-toggle" role="tablist">
+      <button class="level-btn active" data-level="cs-hs">High School</button>
+      <button class="level-btn" data-level="cs-college">College</button>
+    </div>
+
+    <div class="level-panel active" id="cs-hs">
+      <div class="course-list">
+        <div class="course">
+          <h3>Intro Programming</h3>
+          <p class="placeholder">[Add detail: languages taught, typical starting point for beginners.]</p>
+        </div>
+        <div class="course">
+          <h3>AP Computer Science</h3>
+          <p class="placeholder">[Add detail: exam prep, project support.]</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="level-panel" id="cs-college">
+      <div class="course-list">
+        <div class="course">
+          <h3>Programming</h3>
+          <p class="placeholder">[Add detail: languages/frameworks you cover.]</p>
+        </div>
+        <div class="course">
+          <h3>Systems</h3>
+          <p class="placeholder">[Add detail.]</p>
+        </div>
+        <div class="course">
+          <h3>Algorithms</h3>
+          <p class="placeholder">[Add detail: data structures, complexity, interview prep.]</p>
+        </div>
+        <div class="course">
+          <h3>Agentic Coding</h3>
+          <p class="placeholder">[Add detail: what this covers in your sessions.]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="panel" id="projects">
+  <div class="wrap">
+    <div class="subject-head">
+      <h1>Personal Projects</h1>
+      <p>Support for students who want to go beyond coursework — independent projects, research, and turning ideas into something real.</p>
+    </div>
+
+    <div class="course-list" style="margin-top:20px;">
+      <div class="course">
+        <h3>Independent Projects</h3>
+        <p class="placeholder">[Add detail: examples of past projects you've supported.]</p>
+      </div>
+      <div class="course">
+        <h3>Research Support</h3>
+        <p class="placeholder">[Add detail.]</p>
+      </div>
+      <div class="course">
+        <h3>Building Real-World Skills</h3>
+        <p class="placeholder">[Add detail.]</p>
+      </div>
+      <div class="course">
+        <h3>Bringing Your Ideas to Life</h3>
+        <p class="placeholder">[Add detail.]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Alli Keys Tutoring
+</footer>
+
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+
+  const levelBtns = document.querySelectorAll('.level-btn');
+  levelBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const group = btn.closest('.panel');
+      group.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+      group.querySelectorAll('.level-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.level).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
